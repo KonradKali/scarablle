@@ -10,12 +10,12 @@
     <div class="container">
         <h1>Scrabble - Licznik punktów</h1>
         
-        <div id="players">
-            <!-- Kontener dla graczy -->
-        </div>
+        <div id="players"></div>
+        
         <button onclick="resetGame()">Zresetuj grę</button>
         <button onclick="endGame()">Zakończ grę</button>
     </div>
+
     <div id="history">
         <h2>Historia wyników</h2>
         <ul id="history-list"></ul>
@@ -42,9 +42,6 @@
             document.getElementById('player2-total').innerText = 0;
             document.getElementById('player3-total').innerText = 0;
             document.getElementById('player4-total').innerText = 0;
-            history = []; // Resetujemy historię
-            localStorage.removeItem('history'); // Usuwamy historię z localStorage
-            updateHistory(); // Aktualizujemy wyświetlanie historii
         }
 
         // Funkcja kończąca grę
@@ -89,8 +86,11 @@
             updateHistory(); // Wyświetl historię po załadowaniu graczy
         }
 
-        // Uruchom inicjalizację graczy po załadowaniu strony
-        window.onload = initPlayers;
+        // Ładowanie danych po załadowaniu strony
+        window.onload = function() {
+            initPlayers();
+            updateHistory(); // Wyświetl historię po załadowaniu
+        };
     </script>
 </body>
 </html>
