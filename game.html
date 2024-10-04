@@ -21,6 +21,8 @@
         <ul id="history-list"></ul>
     </div>
 
+    <button onclick="goToNameSelection()">Cofnij do wyboru nazw graczy</button>
+
     <script>
         let players = [0, 0, 0, 0];
         let playerNames = JSON.parse(localStorage.getItem('playerNames')) || ["Gracz 1", "Gracz 2", "Gracz 3", "Gracz 4"];
@@ -83,7 +85,7 @@
             updateHistory(); // Aktualizujemy historię
         }
 
-        // Inicjalizacja graczy
+        // Funkcja inicjalizująca graczy
         function initPlayers() {
             const playersContainer = document.getElementById('players');
             for (let i = 0; i < 4; i++) {
@@ -98,6 +100,11 @@
                 playersContainer.appendChild(playerDiv);
             }
             updateHistory(); // Wyświetl historię po załadowaniu graczy
+        }
+
+        // Funkcja cofająca do strony z wyborem nazw graczy
+        function goToNameSelection() {
+            window.location.href = 'index.html'; // Zmieniamy na nazwę pliku z wyborem nazw
         }
 
         // Ładowanie danych po załadowaniu strony
