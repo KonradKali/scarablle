@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrabble Counter</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <h1>Scrabble - Licznik punktów</h1>
+        <div id="players">
+            <div class="player">
+                <label for="player1">Gracz 1:</label>
+                <input type="number" id="player1-points" placeholder="Punkty">
+                <button onclick="addPoints(1)">Dodaj punkty</button>
+                <p>Suma punktów: <span id="player1-total">0</span></p>
+            </div>
+            <div class="player">
+                <label for="player2">Gracz 2:</label>
+                <input type="number" id="player2-points" placeholder="Punkty">
+                <button onclick="addPoints(2)">Dodaj punkty</button>
+                <p>Suma punktów: <span id="player2-total">0</span></p>
+            </div>
+            <div class="player">
+                <label for="player3">Gracz 3:</label>
+                <input type="number" id="player3-points" placeholder="Punkty">
+                <button onclick="addPoints(3)">Dodaj punkty</button>
+                <p>Suma punktów: <span id="player3-total">0</span></p>
+            </div>
+            <div class="player">
+                <label for="player4">Gracz 4:</label>
+                <input type="number" id="player4-points" placeholder="Punkty">
+                <button onclick="addPoints(4)">Dodaj punkty</button>
+                <p>Suma punktów: <span id="player4-total">0</span></p>
+            </div>
+        </div>
+        <button onclick="resetGame()">Zresetuj grę</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
