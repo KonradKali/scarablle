@@ -10,59 +10,58 @@
 <body>
     <div class="container">
         <h1>Scrabble - Licznik punktów</h1>
-        <div id="player-names">
-            <div class="player">
-                <label for="player1-name">Nazwij gracza 1:</label>
-                <input type="text" id="player1-name" placeholder="Gracz 1">
+        
+        <div id="name-form">
+            <h2>Wprowadź nazwy graczy</h2>
+            <div>
+                <input type="text" id="player1-name" placeholder="Nazwa Gracza 1">
             </div>
-            <div class="player">
-                <label for="player2-name">Nazwij gracza 2:</label>
-                <input type="text" id="player2-name" placeholder="Gracz 2">
+            <div>
+                <input type="text" id="player2-name" placeholder="Nazwa Gracza 2">
             </div>
-            <div class="player">
-                <label for="player3-name">Nazwij gracza 3:</label>
-                <input type="text" id="player3-name" placeholder="Gracz 3">
+            <div>
+                <input type="text" id="player3-name" placeholder="Nazwa Gracza 3">
             </div>
-            <div class="player">
-                <label for="player4-name">Nazwij gracza 4:</label>
-                <input type="text" id="player4-name" placeholder="Gracz 4">
+            <div>
+                <input type="text" id="player4-name" placeholder="Nazwa Gracza 4">
             </div>
-            <button onclick="startGame()">Zapisz nazwy graczy</button>
+            <button onclick="savePlayerNames()">Zapisz</button>
         </div>
 
-        <div id="players" style="display: none;">
+        <div id="players" style="display:none;">
             <div class="player">
-                <label for="player1-points">Gracz 1:</label>
+                <label for="player1">Gracz 1:</label>
                 <input type="number" id="player1-points" placeholder="Punkty">
                 <button onclick="addPoints(1)">Dodaj punkty</button>
                 <p>Suma punktów: <span id="player1-total">0</span></p>
             </div>
             <div class="player">
-                <label for="player2-points">Gracz 2:</label>
+                <label for="player2">Gracz 2:</label>
                 <input type="number" id="player2-points" placeholder="Punkty">
                 <button onclick="addPoints(2)">Dodaj punkty</button>
                 <p>Suma punktów: <span id="player2-total">0</span></p>
             </div>
             <div class="player">
-                <label for="player3-points">Gracz 3:</label>
+                <label for="player3">Gracz 3:</label>
                 <input type="number" id="player3-points" placeholder="Punkty">
                 <button onclick="addPoints(3)">Dodaj punkty</button>
                 <p>Suma punktów: <span id="player3-total">0</span></p>
             </div>
             <div class="player">
-                <label for="player4-points">Gracz 4:</label>
+                <label for="player4">Gracz 4:</label>
                 <input type="number" id="player4-points" placeholder="Punkty">
                 <button onclick="addPoints(4)">Dodaj punkty</button>
                 <p>Suma punktów: <span id="player4-total">0</span></p>
             </div>
         </div>
-        <button onclick="resetGame()" style="display: none;">Zresetuj grę</button>
-        <button onclick="endGame()" style="display: none;">Zakończ grę</button>
+        <button onclick="resetGame()">Zresetuj grę</button>
+        <button onclick="endGame()">Zakończ grę</button>
     </div>
     <div id="history">
         <h2>Historia wyników</h2>
         <ul id="history-list"></ul>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
