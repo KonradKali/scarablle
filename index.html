@@ -3,65 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scrabble Counter</title>
+    <title>Scrabble - Wprowadź Nazwy Graczy</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div class="container">
-        <h1>Scrabble - Licznik punktów</h1>
-        
-        <div id="name-form">
-            <h2>Wprowadź nazwy graczy</h2>
-            <div>
-                <input type="text" id="player1-name" placeholder="Nazwa Gracza 1">
-            </div>
-            <div>
-                <input type="text" id="player2-name" placeholder="Nazwa Gracza 2">
-            </div>
-            <div>
-                <input type="text" id="player3-name" placeholder="Nazwa Gracza 3">
-            </div>
-            <div>
-                <input type="text" id="player4-name" placeholder="Nazwa Gracza 4">
-            </div>
-            <button onclick="savePlayerNames()">Zapisz</button>
+        <h1>Wprowadź Nazwy Graczy</h1>
+        <div>
+            <input type="text" id="player1-name" placeholder="Nazwa Gracza 1" required>
         </div>
-
-        <div id="players" style="display:none;">
-            <div class="player">
-                <label for="player1">Gracz 1:</label>
-                <input type="number" id="player1-points" placeholder="Punkty">
-                <button onclick="addPoints(1)">Dodaj punkty</button>
-                <p>Suma punktów: <span id="player1-total">0</span></p>
-            </div>
-            <div class="player">
-                <label for="player2">Gracz 2:</label>
-                <input type="number" id="player2-points" placeholder="Punkty">
-                <button onclick="addPoints(2)">Dodaj punkty</button>
-                <p>Suma punktów: <span id="player2-total">0</span></p>
-            </div>
-            <div class="player">
-                <label for="player3">Gracz 3:</label>
-                <input type="number" id="player3-points" placeholder="Punkty">
-                <button onclick="addPoints(3)">Dodaj punkty</button>
-                <p>Suma punktów: <span id="player3-total">0</span></p>
-            </div>
-            <div class="player">
-                <label for="player4">Gracz 4:</label>
-                <input type="number" id="player4-points" placeholder="Punkty">
-                <button onclick="addPoints(4)">Dodaj punkty</button>
-                <p>Suma punktów: <span id="player4-total">0</span></p>
-            </div>
+        <div>
+            <input type="text" id="player2-name" placeholder="Nazwa Gracza 2" required>
         </div>
-        <button onclick="resetGame()">Zresetuj grę</button>
-        <button onclick="endGame()">Zakończ grę</button>
-    </div>
-    <div id="history">
-        <h2>Historia wyników</h2>
-        <ul id="history-list"></ul>
+        <div>
+            <input type="text" id="player3-name" placeholder="Nazwa Gracza 3">
+        </div>
+        <div>
+            <input type="text" id="player4-name" placeholder="Nazwa Gracza 4">
+        </div>
+        <button onclick="savePlayerNames()">Zapisz</button>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function savePlayerNames() {
+            const names = [
+                document.getElementById('player1-name').value || 'Gracz 1',
+                document.getElementById('player2-name').value || 'Gracz 2',
+                document.getElementById('player3-name').value || 'Gracz 3',
+                document.getElementById('player4-name').value || 'Gracz 4'
+            ];
+
+            localStorage.setItem('playerNames', JSON.stringify(names)); // Zapisz nazwy w localStorage
+            window.location.href = 'game.html'; // Przenieś do strony gry
+        }
+    </script>
 </body>
 </html>
