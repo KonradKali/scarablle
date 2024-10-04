@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrabble Counter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Scrabble - Licznik punktów</h1>
+        
+        <div id="players">
+            <!-- Kontener dla graczy -->
+        </div>
+        <button onclick="resetGame()">Zresetuj grę</button>
+        <button onclick="endGame()">Zakończ grę</button>
+    </div>
+    <div id="history">
+        <h2>Historia wyników</h2>
+        <ul id="history-list"></ul>
+    </div>
+
+    <script>
+        let players = [0, 0, 0, 0];
+        let playerNames = JSON.parse(localStorage.getItem('playerNames')) || ["Gracz 1", "Gracz 2", "Gracz 3", "Gracz 4"];
+        let history = [];
+
+        // Funkcja dodająca punkty
+        function addPoints(player) {
+            const pointsInput = document.getElementById(`player${player}-points`);
+            const points = parseInt(pointsInput.value) || 0;
+            players[player - 1] += points;
+            document.getElementById(`player${player}-total`).innerText = players[player - 1];
+            pointsInput.value = ''; // Resetujemy pole po dodaniu punktów
+        }
+
+        // Funkcja resetująca grę
+        function resetGame() {
+            players = [0, 0, 0, 0];
+            document.getElementById('player1-total').innerText = 0;
+            document.getElementById('player2-total').innerText = 0;
+            document.getElementById('player3-total').innerText = 0;
+            document.getElementById('player4-total').innerText = 0;
+            document.getElementById('history-list').innerHTML = ''; // Resetujemy historię
+            history = []; // Resetujemy historię
+        }
+
+        // Funkcja kończąca grę
+        function endGame() {
+            const maxPoints = Math.max(...players);
+            const winnerIndex = players.indexOf(maxPoints);
+            const winnerName = playerNames[winnerIndex]; // Pobieramy nazwę zwycięzcy
+            
+            if (winnerName) {
+                const winnerText = `${winnerName} wygrał z wynikiem: ${maxPoints}`;
+                history.push(winnerText); // Dodajemy wynik do historii
+                updateHistory(); // Aktualizujemy historię
+            }
+        }
+
+        // Funkcja aktualizująca historię
+        function updateHistory() {
+            const historyList = document.getElementById('history-list');
+            historyList.innerHTML = ''; // Resetujemy listę
+            history.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                historyList.appendChild(li);
+            });
+        }
+
+        // Inicjalizacja graczy
+        function initPlayers() {
+            const playersContainer = document.getElementById('players');
+            for (let i = 0; i < 4; i++) {
+                const playerDiv = document.createElement('div');
+                playerDiv.className = 'player';
+                playerDiv.innerHTML = `
+                    <label>${playerNames[i]}:</label>
+                    <input type="number" id="player${i + 1}-points" placeholder="Punkty">
+                    <button onclick="addPoints(${i + 1})">Dodaj punkty</button>
+                    <p>Suma punktów: <span id="player${i + 1}-total">0</span></p>
+                `;
+                playersContainer.appendChild(playerDiv);
+            }
+        }
+
+        // Uruchom inicjalizację graczy po załadowaniu strony
+        window.onload = initPlayers;
+    </script>
+</body>
+</html>
