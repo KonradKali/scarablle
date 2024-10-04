@@ -7,7 +7,7 @@ function addPoints(playerNumber) {
     const pointsInput = document.getElementById(`player${playerNumber}-points`);
     const points = parseInt(pointsInput.value);
     
-    if (!isNaN(points)) {
+    if (!isNaN(points) && points >= 0) {
         players[playerNumber - 1] += points; // Dodaje punkty do gracza
         pointsInput.value = ""; // Czyści pole wejściowe
         updateTotals();
@@ -39,7 +39,6 @@ function endGame() {
     const winnerIndex = players.indexOf(maxPoints);
     const winnerName = playerNames[winnerIndex];
     
-    // Upewnij się, że istnieje nazwa zwycięzcy
     if (winnerName) {
         const winnerText = `${winnerName} wygrał z wynikiem: ${maxPoints}`;
         history.push(winnerText); // Dodajemy wynik do historii
