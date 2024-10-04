@@ -47,7 +47,7 @@ function resetGame() {
 function endGame() {
     const maxPoints = Math.max(...players);
     const winnerIndex = players.indexOf(maxPoints);
-    const winnerName = playerNames[winnerIndex];
+    const winnerName = playerNames[winnerIndex]; // Pobieramy nazwę zwycięzcy
     
     if (winnerName) {
         const winnerText = `${winnerName} wygrał z wynikiem: ${maxPoints}`;
@@ -55,6 +55,7 @@ function endGame() {
         updateHistory(); // Aktualizujemy historię
     }
 }
+
 
 // Funkcja aktualizująca historię wyników
 function updateHistory() {
