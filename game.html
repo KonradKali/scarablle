@@ -62,11 +62,25 @@
         function updateHistory() {
             const historyList = document.getElementById('history-list');
             historyList.innerHTML = ''; // Resetujemy listę
-            history.forEach(item => {
+            history.forEach((item, index) => {
                 const li = document.createElement('li');
                 li.textContent = item;
+
+                // Tworzymy przycisk do usunięcia
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Usuń';
+                deleteButton.onclick = () => removeHistoryItem(index); // Ustawiamy funkcję do usunięcia
+                
+                li.appendChild(deleteButton); // Dodajemy przycisk do listy
                 historyList.appendChild(li);
             });
+        }
+
+        // Funkcja usuwająca element z historii
+        function removeHistoryItem(index) {
+            history.splice(index, 1); // Usuwamy element z historii
+            localStorage.setItem('history', JSON.stringify(history)); // Zapisz zmiany w localStorage
+            updateHistory(); // Aktualizujemy historię
         }
 
         // Inicjalizacja graczy
