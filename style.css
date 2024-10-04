@@ -36,3 +36,11 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+#history {
+    margin-top: 20px;
+}
+
+#history-list {
+    list-style-type: none;
+    padding: 0;
+}
