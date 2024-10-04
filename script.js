@@ -38,10 +38,13 @@ function endGame() {
     const maxPoints = Math.max(...players);
     const winnerIndex = players.indexOf(maxPoints);
     const winnerName = playerNames[winnerIndex];
-    const winnerText = `${winnerName} wygrał z wynikiem: ${maxPoints}`;
-
-    history.push(winnerText);
-    updateHistory();
+    
+    // Upewnij się, że istnieje nazwa zwycięzcy
+    if (winnerName) {
+        const winnerText = `${winnerName} wygrał z wynikiem: ${maxPoints}`;
+        history.push(winnerText); // Dodajemy wynik do historii
+        updateHistory(); // Aktualizujemy historię
+    }
 }
 
 // Funkcja aktualizująca historię wyników
