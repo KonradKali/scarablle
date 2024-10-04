@@ -1,4 +1,5 @@
 let players = [0, 0, 0, 0]; // Punkty graczy
+let playerNames = ["Gracz 1", "Gracz 2", "Gracz 3", "Gracz 4"]; // Nazwy graczy
 let history = []; // Historia wyników
 
 // Funkcja dodająca punkty do gracza
@@ -23,14 +24,21 @@ function updateTotals() {
 // Funkcja resetująca grę
 function resetGame() {
     players = [0, 0, 0, 0];
+    playerNames = [
+        document.getElementById("player1-name").value || "Gracz 1",
+        document.getElementById("player2-name").value || "Gracz 2",
+        document.getElementById("player3-name").value || "Gracz 3",
+        document.getElementById("player4-name").value || "Gracz 4"
+    ];
     updateTotals();
 }
 
 // Funkcja kończąca grę
 function endGame() {
     const maxPoints = Math.max(...players);
-    const winnerIndex = players.indexOf(maxPoints) + 1;
-    const winnerText = `Gracz ${winnerIndex} wygrał z wynikiem: ${maxPoints}`;
+    const winnerIndex = players.indexOf(maxPoints);
+    const winnerName = playerNames[winnerIndex];
+    const winnerText = `${winnerName} wygrał z wynikiem: ${maxPoints}`;
 
     history.push(winnerText);
     updateHistory();
